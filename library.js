@@ -17,7 +17,7 @@ function addBookToLibrary() {
 }
 
 function displayBooks(array) {
-  array.forEach(function(book) {
+  for (let book of array) {
     const table = document.querySelector("table");
     const row = document.createElement("tr");
     const titleCell = document.createElement("td");
@@ -30,5 +30,9 @@ function displayBooks(array) {
     statusCell.textContent = book.status;
     row.append(titleCell, authorCell, pagesCell, statusCell);
     table.appendChild(row);
-  });
+  };
 }
+
+const button = document.querySelector(".newbook");
+
+button.addEventListener("click", addBookToLibrary);
