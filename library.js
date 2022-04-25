@@ -22,20 +22,22 @@ function addBookToLibrary() {
 }
 
 function displayBooks(array) {
+  const cards = document.querySelectorAll(".book");
+  cards.forEach(card => card.parentElement.removeChild(card));
   for (let book of array) {
-    if (book.displayed === false || book.displayed === undefined) {
-    const table = document.querySelector("table");
-    const row = document.createElement("tr");
-    row.setAttribute("data-number", myLibrary.indexOf(book));
-    const titleCell = document.createElement("td");
-    titleCell.textContent = book.title;
-    const authorCell = document.createElement("td");
-    authorCell.textContent = book.author;
-    const pagesCell = document.createElement("td");
-    pagesCell.textContent = book.pages;
-    const statusCell = document.createElement("td");
-    statusCell.textContent = book.status;
-    const buttons = document.createElement("td");
+    const container = document.querySelector(".main-container");
+    const card = document.createElement("div");
+    card.classList.add("book");
+    card.setAttribute("data-number", myLibrary.indexOf(book));
+    const titlePara = document.createElement("p");
+    titlePara.textContent = book.title;
+    const authorPara = document.createElement("p");
+    authorPara.textContent = book.author;
+    const pagesPara = document.createElement("p");
+    pagesPara.textContent = book.pages;
+    const statusPara = document.createElement("p");
+    statusPara.textContent = book.status;
+    const buttons = document.createElement("p");
     buttons.classList.add("buttons");
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
@@ -46,15 +48,14 @@ function displayBooks(array) {
     editButton.classList.add("edit");
     editButton.textContent = "Edit";
     buttons.append(deleteButton, editButton);
-    row.append(titleCell, authorCell, pagesCell, statusCell, buttons);
-    table.appendChild(row);
-    book.displayed = true;
-    }
+    card.append(titlePara, authorPara, pagesPara, statusPara, buttons);
+    container.appendChild(card);
   };
 }
 
 function deleteBook(index) {
   myLibrary.splice(index, 1);
-  const row = document.querySelector(`[data-number="${index}"]`);
-  row.parentElement.removeChild(row);
+  const book = document.querySelector(`[data-number="${index}"]`);
+  book.parentElement.removeChild(book);
+  displayBooks(myLibrary);
 }
