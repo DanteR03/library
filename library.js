@@ -1,5 +1,9 @@
 let myLibrary = [];
 
+const button = document.querySelector(".newbook");
+
+button.addEventListener("click", addBookToLibrary);
+
 function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
@@ -22,6 +26,7 @@ function displayBooks(array) {
     if (book.displayed === false || book.displayed === undefined) {
     const table = document.querySelector("table");
     const row = document.createElement("tr");
+    row.setAttribute("data-number", myLibrary.indexOf(book));
     const titleCell = document.createElement("td");
     titleCell.textContent = book.title;
     const authorCell = document.createElement("td");
@@ -34,6 +39,8 @@ function displayBooks(array) {
     buttons.classList.add("buttons");
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete");
+    deleteButton.setAttribute("data-number", myLibrary.indexOf(book));
+    deleteButton.addEventListener("click", e => {deleteBook(e.target.dataset.number)});
     deleteButton.textContent = "Delete";
     const editButton = document.createElement("button");
     editButton.classList.add("edit");
@@ -46,6 +53,8 @@ function displayBooks(array) {
   };
 }
 
-const button = document.querySelector(".newbook");
-
-button.addEventListener("click", addBookToLibrary);
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
+  const row = document.querySelector(`[data-number="${index}"]`);
+  row.parentElement.removeChild(row);
+}
