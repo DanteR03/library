@@ -49,7 +49,7 @@ function displayBooks(array) {
     row.append(titleCell, authorCell, pagesCell, statusCell, buttons);
     table.appendChild(row);
     book.displayed = true;
-    };
+    }
   };
 }
 
