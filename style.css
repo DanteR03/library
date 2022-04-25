@@ -12,3 +12,13 @@ table {
   text-align: center;
   width: 100%;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete, .edit {
+  width: 75px;
+}
