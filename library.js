@@ -2,7 +2,10 @@ let myLibrary = [];
 
 const button = document.querySelector(".newbook");
 
-button.addEventListener("click", addBookToLibrary);
+button.addEventListener("click", function(){
+  const popup = document.querySelector(".form-popup");
+  popup.style.display = "block";
+});
 
 function Book(title, author, pages, status) {
   this.title = title;
