@@ -89,10 +89,12 @@ function displayBooks(array) {
     deleteButton.setAttribute("data-number", myLibrary.indexOf(book));
     deleteButton.addEventListener("click", e => {deleteBook(e.target.dataset.number)});
     deleteButton.textContent = "Delete";
-    const editButton = document.createElement("button");
-    editButton.classList.add("edit");
-    editButton.textContent = "Edit";
-    buttons.append(deleteButton, editButton);
+    const changeButton = document.createElement("button");
+    changeButton.classList.add("change");
+    changeButton.setAttribute("data-number", myLibrary.indexOf(book));
+    changeButton.addEventListener("click", e => {changeStatus(e.target.dataset.number)});
+    changeButton.textContent = "Change Status";
+    buttons.append(deleteButton, changeButton);
     card.append(titlePara, authorPara, pagesPara, statusPara, buttons);
     container.appendChild(card);
   };
@@ -104,3 +106,12 @@ function deleteBook(index) {
   book.parentElement.removeChild(book);
   displayBooks(myLibrary);
 }
+
+function changeStatus(index) {
+  if (myLibrary[index].status === "Read") {
+    myLibrary[index].status = "Not Read"
+  } else {
+    myLibrary[index].status = "Read"
+  }
+  displayBooks(myLibrary);
+};
