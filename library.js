@@ -1,10 +1,29 @@
 let myLibrary = [];
 
-const button = document.querySelector(".newbook");
+const newBookButton = document.querySelector(".newbook");
 
-button.addEventListener("click", function(){
+newBookButton.addEventListener("click", function(){
   const popup = document.querySelector(".form-popup");
   popup.style.display = "block";
+});
+
+const submitButton = document.querySelector(".btn");
+
+submitButton.addEventListener("click", addBookToLibrary);
+
+const closeButton = document.querySelector(".btn-cancel");
+
+closeButton.addEventListener("click", function(){
+  const popup = document.querySelector(".form-popup");
+  const titleField = document.querySelector("input[name=title]");
+  const authorField = document.querySelector("input[name=author]");
+  const pagesField = document.querySelector("input[name=pages]");
+  const statusCheck = document.querySelector("input[name=status]");
+  titleField.value = "";
+  authorField.value = "";
+  pagesField.value = "";
+  statusCheck.checked = false;
+  popup.style.display = "none";
 });
 
 function Book(title, author, pages, status) {
@@ -15,14 +34,37 @@ function Book(title, author, pages, status) {
 }
 
 function addBookToLibrary() {
-  let title = window.prompt("Title");
-  let author = window.prompt("Author");
-  let pages = window.prompt("Pages");
-  let status = window.prompt("Status");
-  let newBook = new Book(title, author, pages, status);
-  myLibrary.push(newBook);
-  displayBooks(myLibrary);
-}
+  const popup = document.querySelector(".form-popup");
+  const titleField = document.querySelector("input[name=title]");
+  const authorField = document.querySelector("input[name=author]");
+  const pagesField = document.querySelector("input[name=pages]");
+  const statusCheck = document.querySelector("input[name=status]");
+  if (titleField.validity.valid === false) {
+    titleField.reportValidity();
+  } else if (authorField.validity.valid === false) {
+    authorField.reportValidity();
+  } else if (pagesField.validity.valid === false) {
+    pagesField.reportValidity();
+  } else {
+    let title = titleField.value;
+    let author = authorField.value;
+    let pages = pagesField.value;
+    let status = "";
+    if (statusCheck.checked === false) {
+      status = "Not Read";
+    } else {
+      status = "Read";
+    };
+    let newBook = new Book(title, author, pages, status);
+    myLibrary.push(newBook);
+    displayBooks(myLibrary);
+    titleField.value = "";
+    authorField.value = "";
+    pagesField.value = "";
+    statusCheck.checked = false;
+    popup.style.display = "none";
+  };
+};
 
 function displayBooks(array) {
   const cards = document.querySelectorAll(".book");
