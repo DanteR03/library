@@ -9,13 +9,23 @@
 
 :root {
     --header-background-color: #f3f4f6;
-    --header-button-color: #0284c7;
+    --header-button-color: #7dd3fc;
+    --delete-button-color: #f87171;
 }
 
 body {
     height: 100vh;
     display: grid;
     grid-template-rows: 1fr 6fr;
+}
+
+button {
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .header-container {
@@ -27,13 +37,35 @@ body {
 }
 
 .header-container button {
-    padding: 15px;
-    border-radius: 15px;
-    border: none;
-    outline: none;
     background-color: var(--header-button-color);
-    color: #ffffff;
-    font-weight: bold;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: min-content;
+    gap: 30px;
+    padding: 30px;
+}
+
+.book {
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 15px;
+}
+
+.book-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.book-buttons button:first-of-type {
+    background-color: var(--delete-button-color);
 }
 
 
