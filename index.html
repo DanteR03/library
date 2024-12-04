@@ -13,36 +13,30 @@
         <button>New Book</button>
     </div>
     <div class="books-container">
-        <div class="book">
-            <p>Title</p>
-            <p>Author</p>
-            <p>123</p>
-            <p>Read</p>
-            <div class="book-buttons">
-                <button>Delete</button>
-                <button>Change Status</button>
-            </div>
-        </div>
-        <div class="book">
-            <p>Title</p>
-            <p>Author</p>
-            <p>123</p>
-            <p>Read</p>
-            <div class="book-buttons">
-                <button>Delete</button>
-                <button>Change Status</button>
-            </div>
-        </div>
-        <div class="book">
-            <p>Title</p>
-            <p>Author</p>
-            <p>123</p>
-            <p>Read</p>
-            <div class="book-buttons">
-                <button>Delete</button>
-                <button>Change Status</button>
-            </div>
-        </div>
     </div>
+    <dialog class="book-form-modal">
+        <form method="dialog">
+            <label for="title">
+                Title:
+                <input type="text" name="bookTitle" id="title" required />
+            </label>
+            <label for="author">
+                Author:
+                <input type="text" name="bookAuthor" id="author" required />
+            </label>
+            <label for="pages">
+                Amount of pages:
+                <input type="number" name="bookPages" id="pages" min="1" required />
+            </label>
+            <label for="status">
+                Have you read it:
+                <input type="checkbox" name="bookStatus" id="status" checked />
+            </label>
+        <div class="form-buttons">
+            <button class="form-close-button">Close</button>
+            <button class="form-submit-button">Submit</button>
+        </div>
+        </form>
+    </dialog>
 </body>
 </html>

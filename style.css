@@ -36,7 +36,8 @@ button {
     padding: 15px;
 }
 
-.header-container button {
+.header-container button,
+form button:last-of-type {
     background-color: var(--header-button-color);
 }
 
@@ -64,9 +65,42 @@ button {
     gap: 15px;
 }
 
-.book-buttons button:first-of-type {
+.book-buttons button:first-of-type,
+form button:first-of-type {
     background-color: var(--delete-button-color);
 }
+
+.book-form-modal {
+    align-self: center;
+    justify-self: center;
+}
+
+.book-form-modal form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: start;
+    justify-content: center;
+    gap: 15px;
+}
+
+input#pages {
+    width: 25%;
+}
+
+.form-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+
 
 
 
