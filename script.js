@@ -75,9 +75,15 @@ function displayLibraryBooks() {
         statusPara.textContent = book.status;
         deleteButton.textContent = "Delete";
         changeButton.textContent = "Change Status";
-        deleteButton.addEventListener("click", (e) => {
-            deleteBookFromLibrary(e.target.parentNode.parentNode.dataset.index);
+        deleteButton.addEventListener("click", () => {
+            const bookIndex = bookElement.dataset.index;
+            deleteBookFromLibrary(bookIndex);
             displayLibraryBooks();
+        });
+        changeButton.addEventListener("click", () => {
+            const bookIndex = bookElement.dataset.index;
+            myLibrary[bookIndex].changeStatus();
+            statusPara.textContent = myLibrary[bookIndex].status;
         })
         buttonContainer.append(deleteButton, changeButton);
         buttonContainer.classList.add("book-buttons");
