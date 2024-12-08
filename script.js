@@ -38,14 +38,22 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
-    this.changeStatus = function(status) {
-        this.status = status;
+    this.changeStatus = function() {
+        if (this.status === "Not Read") {
+            this.status = "Read";
+        } else {
+            this.status = "Not Read";
+        };
     };
 }
 
 function addBookToLibrary(title, author, pages, status) {
     let book = new Book(title, author, pages, status);
     myLibrary.push(book);
+}
+
+function deleteBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
 }
 
 function displayLibraryBooks() {
@@ -60,16 +68,22 @@ function displayLibraryBooks() {
         const buttonContainer = document.createElement("div");
         const deleteButton = document.createElement("button");
         const changeButton = document.createElement("button");
+        const bookIndex = myLibrary.indexOf(book);
         titlePara.textContent = book.title;
         authorPara.textContent = book.author;
         pagesPara.textContent = book.pages;
         statusPara.textContent = book.status;
         deleteButton.textContent = "Delete";
         changeButton.textContent = "Change Status";
+        deleteButton.addEventListener("click", (e) => {
+            deleteBookFromLibrary(e.target.parentNode.parentNode.dataset.index);
+            displayLibraryBooks();
+        })
         buttonContainer.append(deleteButton, changeButton);
         buttonContainer.classList.add("book-buttons");
         bookElement.append(titlePara, authorPara, pagesPara, statusPara, buttonContainer);
         bookElement.classList.add("book");
+        bookElement.setAttribute("data-index", bookIndex);
         booksContainer.appendChild(bookElement);
     })
 }
