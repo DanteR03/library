@@ -38,12 +38,13 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
-    this.changeStatus = function() {
-        if (this.status === "Not Read") {
-            this.status = "Read";
-        } else {
-            this.status = "Not Read";
-        };
+}
+
+Book.prototype.changeStatus = function() {
+    if (this.status === "Not Read") {
+        this.status = "Read";
+    } else {
+        this.status = "Not Read";
     };
 }
 
