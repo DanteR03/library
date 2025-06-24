@@ -33,19 +33,21 @@ modalSubmitButton.addEventListener("click", (e) => {
     }
 })
 
-function Book(title, author, pages, status) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-}
+class Book {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
 
-Book.prototype.changeStatus = function() {
-    if (this.status === "Not Read") {
-        this.status = "Read";
-    } else {
-        this.status = "Not Read";
-    };
+    changeStatus() {
+        if (this.status === "Not Read") {
+            this.status = "Read";
+        } else {
+            this.status = "Not Read";
+        };
+    }
 }
 
 function addBookToLibrary(title, author, pages, status) {
